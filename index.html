@@ -164,9 +164,20 @@
 
     // --- NAVIGATION ---
     function showView(viewId) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById(viewId).classList.add('active');
-        window.scrollTo(0,0);
+    // Hide all views first
+    document.querySelectorAll('.view').forEach(v => {
+        v.classList.remove('active');
+        v.style.display = 'none'; // Ensure they are fully hidden
+    });
+
+    // Show the specific view
+    const activeView = document.getElementById(viewId);
+    activeView.classList.add('active');
+    activeView.style.display = 'flex'; // Force it to show as a flexbox
+    
+    // Smoothly scroll to the top of the new view
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
     }
 
     // --- CAKE ---
